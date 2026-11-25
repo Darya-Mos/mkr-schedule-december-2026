@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Расписание практикумов, загрузка тренеров и интервалы на дорогу">
+<title>Декабрьские практикумы МКР</title>
+<style>
+:root{color-scheme:light;--ink:#17233d;--muted:#586683;--line:#e1e7f1;--white:#fff;--accent:#245ae7;--bg:#f3f6fc;--onsite:#bef264;--onsite-ink:#26360e;--onsite-soft:#ecfccb;--onsite-border:#65890e;--online:#245bc9;--danger:#a23524;--green:#13634e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,Arial,sans-serif}button,input,select{font:inherit}a{color:var(--accent)}button,select{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #4e77ef;outline-offset:2px}
+ masthead,header{display:block}.hero{background:radial-gradient(ellipse at 80% 0%,#254db5,transparent 56%),#132449;color:white}.wrap{max-width:1320px;margin:auto;padding:0 32px}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding-top:29px;padding-bottom:36px}.identity{font-size:.9rem;letter-spacing:.08em;font-weight:750;color:#c0d0ff}.hero h1{margin:10px 0 4px;font-size:clamp(2rem,5vw,3.65rem);line-height:1.06;letter-spacing:-.065em}.hero p{margin:10px 0 0;color:#d8e3ff}.actions{display:flex;gap:8px;flex-wrap:wrap}.button,.actions a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 13px;border-radius:10px;border:1px solid var(--line);background:white;color:var(--ink);text-decoration:none;font-size:.88rem;font-weight:650;white-space:nowrap}.actions .button,.actions a{border-color:#738bc9;background:#fff;color:#162e62}.actions .secondary{background:#263d76;color:white}.actions button:hover,.button:hover,.actions a:hover{border-color:#7690e7}main{padding:22px 0 42px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 3px 15px #26345508}.filters{display:grid;grid-template-columns:repeat(4,minmax(110px,1fr)) minmax(150px,1.3fr) auto;gap:10px;align-items:end}label{display:grid;gap:5px;color:var(--muted);font-size:.88rem;font-weight:600}input,select{min-width:0;width:100%;padding:9px 10px;border:1px solid #ced8e8;border-radius:8px;background:#fff;color:var(--ink);min-height:40px}.range{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.range-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.range-controls input{width:auto}.date-heading{margin:0;font-size:1.5rem;letter-spacing:-.035em}.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin:17px 0 0}.day{background:#f5f7fc;border:1px solid var(--line);padding:8px 4px;border-radius:10px;color:var(--ink);font-weight:650}.day small{display:block;color:var(--muted);font-size:.77rem;font-weight:450}.day.active{background:#214cbd;border-color:#214cbd;color:#fff}.day.active small{color:#e1eaff}.day:disabled{opacity:.5;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 15px}.stat b{display:block;font-size:1.75rem;letter-spacing:-.05em}.stat span{color:var(--muted);font-size:.89rem}.stat.warn b{color:var(--danger)}
+.section-title{margin:0;font-size:1.25rem;letter-spacing:-.025em} .legend{display:flex;gap:9px 14px;flex-wrap:wrap;margin:9px 0 14px;color:var(--muted);font-size:.88rem}.key::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--c);margin-right:5px}.scroll{overflow:auto;padding-bottom:4px}.calendar{min-width:665px;display:grid;grid-template-columns:100px 1fr;gap:7px 9px}.ticks{display:flex;justify-content:space-between;color:var(--muted);padding-right:1px;font-size:.79rem}.trainer{align-self:center;font-weight:700}.lane{position:relative;min-height:49px;border:1px solid var(--line);border-radius:8px;background:repeating-linear-gradient(to right,#f7f9fd 0 calc(var(--tick) - 1px),#e1e7f1 calc(var(--tick) - 1px) var(--tick));overflow:hidden}.slot{position:absolute;min-width:2px;height:34px;top:7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;padding:5px 7px;border:0;border-radius:6px;color:#fff;background:var(--online);font-size:.85rem;font-weight:650}.slot.onsite{background:var(--onsite);color:var(--onsite-ink)}.slot.travel{background:#61728d}.slot.risk{box-shadow:inset 0 0 0 3px #fb634f}
+.columns{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;align-items:start}.events{display:grid;gap:8px;margin-top:12px}.event{border:1px solid var(--line);border-left:4px solid var(--online);border-radius:10px;padding:9px 11px}.event.onsite{border-left-color:var(--onsite-border)}.event.travel{border-left-color:#61728d}.event summary{cursor:pointer}.event summary::marker{color:var(--muted)}.event b{font-weight:700}.event p{margin:8px 0 1px;color:var(--muted)}.when{font-size:.89rem;color:var(--muted);white-space:nowrap}.tag{display:inline-block;color:var(--muted);background:var(--bg);border-radius:6px;font-size:.8rem;padding:2px 6px;margin:4px 4px 0 0}.tag.risk{color:var(--danger);background:#ffe9e3}.side{display:grid;gap:12px}.side .panel{margin:0}.stack{display:grid;gap:8px;margin-top:10px}.stack p{margin:0}.warning{border-radius:9px;background:#fff2ed;color:#792a1d;padding:9px 11px;font-size:.92rem}.hint,.source{font-size:.88rem;color:var(--muted);margin:8px 0 0}.source{margin:0 0 12px}.error{color:var(--danger)}.settings{font-size:.88rem;margin-top:10px}.settings label{display:flex;align-items:center;gap:8px}.settings input{width:77px}.visually-hidden{position:absolute;clip-path:inset(50%);height:1px;width:1px;overflow:hidden;white-space:nowrap}
+@media(max-width:920px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}.columns{grid-template-columns:1fr}.wrap{padding-inline:20px}.side{grid-template-columns:1fr 1fr}}@media(max-width:600px){.wrap{padding-inline:12px}.top{display:block;padding-top:18px;padding-bottom:23px}.actions{margin-top:15px}.filters,.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.side{grid-template-columns:1fr}.panel{padding:13px}.week{gap:3px}.day{font-size:.86rem}.day small{font-size:.69rem}.stat b{font-size:1.4rem}.date-heading{font-size:1.2rem}.range-controls{gap:4px}.range-controls .button{padding:7px 8px}}
+.filters{grid-template-columns:repeat(2,minmax(110px,1fr)) minmax(150px,1.3fr) auto}
+.period-modes{display:flex;gap:6px;flex-wrap:wrap}.period-modes{margin-bottom:14px}.period-modes button[aria-pressed="true"]{background:#214cbd;border-color:#214cbd;color:white}
+.period-view[hidden],.day-view[hidden]{display:none}
+#week[hidden]{display:none}.columns:not(.single-day),.columns:not(.single-day) .side{grid-template-columns:1fr}
+.period-caption{margin:0 0 12px}.period-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;min-width:795px}
+.period-grid .weekday{margin:0;padding:0 5px;color:var(--muted);font-weight:650;font-size:.88rem;text-align:center}
+.period-grid .date-card{min-height:82px}.date-card{background:#f8faff;border:1px solid var(--line);border-radius:10px;padding:7px;min-width:0}.date-card.empty{background:white;border-style:dashed}
+.date-head{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:4px}.date-head button{padding:4px 7px;min-height:32px;border:0;border-radius:6px;background:#e9efff;color:#163d9e;font-weight:750;text-align:left}.date-head span{color:var(--muted);font-size:.82rem}
+.period-event{width:100%;display:block;text-align:left;padding:5px 6px;margin:5px 0 0;background:#e3edff;color:#163780;border:0;border-left:3px solid var(--online);border-radius:5px;overflow-wrap:anywhere;font-size:.88rem}.period-event.onsite{background:var(--onsite-soft);color:var(--onsite-ink);border-color:var(--onsite-border)}.period-event.travel{background:#e9edf4;color:#354461;border-color:#61728d}.period-event.risk{box-shadow:inset 0 0 0 2px #d25d49}
+.period-event time{display:block;font-weight:750}.period-list{display:grid;gap:9px}
+@media(max-width:920px){.filters{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.filters{grid-template-columns:repeat(2,minmax(0,1fr))}.period-modes .button{padding-inline:10px}}
+.side{grid-template-columns:minmax(0,1fr)}.format-tag.online{background:#e3edff;color:#163780}.format-tag.onsite{background:var(--onsite-soft);color:var(--onsite-ink)}.format-tag.travel{background:#e9edf4;color:#354461}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap top"><div><div class="identity">МАНДРИК, КАЗАКОВ И РОБОТЫ</div><h1>Декабрьские практикумы</h1><p>Расписание, загрузка тренеров и запас на дорогу</p></div><div class="actions"><a href="https://docs.google.com/spreadsheets/d/1FeNtNeYHvawlFYH2RUcwMo6XprVhmUbV3H1obUq_CaQ/edit" target="_blank" rel="noopener noreferrer">Открыть таблицу</a></div></div></header>
+<div class="wrap"><main>
+<p id="source" class="source" aria-live="polite"></p>
+<section class="panel filters" aria-label="Фильтры расписания">
+<label>Тренер<select id="trainer"></select></label><label>Формат<select id="format"></select></label><label>Поиск по названию<input id="query" type="search" placeholder="Название события"></label><button class="button" id="reset" type="button">Сбросить</button>
+</section>
+<section class="panel" aria-label="Период расписания">
+<div class="period-modes" id="modes" role="group" aria-label="Режим просмотра">
+<button class="button" type="button" data-mode="day" aria-pressed="true">День</button>
+<button class="button" type="button" data-mode="week" aria-pressed="false">Неделя</button>
+<button class="button" type="button" data-mode="month" aria-pressed="false">Месяц</button>
+</div>
+<div class="range"><h2 class="date-heading" id="dateTitle"></h2>
+<div class="range-controls" id="dateControls"><button class="button" id="prev" type="button">Назад</button><label><span class="visually-hidden">Выбрать дату</span><input id="date" type="date" max="9999-12-31" min="0001-01-01"></label><button class="button" id="next" type="button">Вперёд</button></div>
+</div><div id="week" class="week"></div></section>
+<div id="stats" class="stats" aria-label="Загрузка за выбранный период"></div>
+<section class="panel period-view" id="periodView" hidden><h2 class="section-title">События за период</h2><p class="hint period-caption">Выберите дату, чтобы посмотреть расписание по часам.</p><div class="scroll" id="overview"></div></section>
+<section class="panel day-view" id="timelineView"><h2 class="section-title">Занятость по тренерам</h2><div class="legend"><span class="key" style="--c:#245bc9">Онлайн</span><span class="key" style="--c:var(--onsite)">Очно</span><span class="key" style="--c:#61728d">Поездка</span><span class="key" style="--c:#fb634f">Требует внимания</span></div><div class="scroll"><div class="calendar" id="calendar"></div></div></section>
+<div class="columns" id="detailColumns"><section class="panel day-view" id="dayEvents"><h2 class="section-title">События дня</h2><div class="events" id="events"></div></section><div class="side">
+<section class="panel"><h2 class="section-title">Переезды и пересечения</h2><div class="settings"><label>На дорогу, ч<input id="buffer" type="number" min="0" max="12" step="0.5" value="2"></label></div><div class="stack" id="warnings"></div><p class="hint">Интервал проверяем у каждого тренера, если хотя бы одно соседнее событие очное.</p></section>
+</div></div>
+</main></div>
+<script id="seed" type="application/json">[["2026-11-30","10:00","13:00","ВТБ стандартный практикум день 1","ВТБ","Очно","Володя","Филипп","По расписанию",""],["2026-11-30","10:00","13:00","ВТБ продвинутый по агентам_3 поток (основной). День 1","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-11-30","15:00","18:00","ВТБ стандартный практикум день 1","ВТБ","Очно","Володя","Филипп","По расписанию",""],["2026-12-01","10:00","13:00","ВТБ продвинутый по агентам_3 поток (основной). День 2","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-01","10:00","11:00","Сессия вопросов и ответов Альфабанк","Альфа-Банк","Онлайн","Володя","","По расписанию",""],["2026-12-01","14:00","16:00","ВТБ продвинутый по агентам_1 поток (первая доп сессия).","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-01","16:00","18:00","ВТБ продвинутый по агентам_1 поток (первая доп сессия).","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-02","10:00","13:00","ВТБ продвинутый по агентам_3 поток (основной). День 3","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-02","15:30","17:30","Последняя межкомандная сессия. Альфастрахование","АльфаСтрахование","Онлайн","Володя","","По расписанию",""],["2026-12-02","17:30","18:30","Сессия коучей. Альфастрахование","АльфаСтрахование","Онлайн","Володя","","По расписанию",""],["2026-12-03","10:00","14:30","ВТБ_ПИК Продвинутый интенсив по ИИ-агентам. День 1","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-03","10:00","13:00","ВТБ стандартный практикум день 2","ВТБ","Очно","Володя","Филипп","По расписанию",""],["2026-12-03","15:00","18:00","ВТБ стандартный практикум день 2","ВТБ","Очно","Володя","Филипп","По расписанию",""],["2026-12-04","10:00","14:30","ВТБ_ПИК Продвинутый интенсив по ИИ-агентам. День 2","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-07","10:00","13:00","ВТБ стандартный практикум день 3","ВТБ","Очно","Володя","Филипп","По расписанию",""],["2026-12-07","15:00","18:00","ВТБ стандартный практикум день 3","ВТБ","Очно","Володя","Филипп","По расписанию",""],["2026-12-08","10:00","13:00","Атон день 1","Атон","Очно","Володя","Филипп","По расписанию",""],["2026-12-08","12:00","14:00","Выступление в Яндекс","Яндекс","Очно","Рома","","По расписанию",""],["2026-12-08","15:00","18:00","АльфаСтрахование. Практикум для IT. День 1","АльфаСтрахование","Онлайн","Володя","","По расписанию",""],["2026-12-09","10:00","13:00","Атон день 2","Атон","Очно","Володя","Филипп","По расписанию",""],["2026-12-09","10:00","18:00","ВТБ. Очный тренинг для сборной группы среднего менеджмента 1 день","ВТБ","Очно","Рома","","По расписанию",""],["2026-12-09","15:00","18:00","АльфаСтрахование. Практикум для IT. День 2","АльфаСтрахование","Онлайн","Володя","","По расписанию",""],["2026-12-10","10:00","18:00","ВТБ. Очный тренинг для сборной группы среднего менеджмента 2 день","ВТБ","Очно","Рома","","По расписанию",""],["2026-12-10","10:00","13:00","Атон день 3","Атон","Очно","Володя","Филипп","По расписанию",""],["2026-12-10","14:00","18:30","ВТБ_ПИК Онлайн Продвинутый интенсив по ИИ-агентам. 1 день","ВТБ","Онлайн","Володя","","По расписанию",""],["2026-12-11","09:30","14:00","ВТБ_ПИК Онлайн Продвинутый интенсив по ИИ-агентам. День 2","ВТБ","Онлайн","Володя","","По расписанию",""],["2026-12-11","10:00","12:00","ВТБ продвинутый по агентам_3 поток (первая доп сессия). Онлайн","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-11","12:00","14:00","ВТБ продвинутый по агентам_1 поток (вторая доп сессия). Онлайн","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-11","14:00","16:00","ВТБ продвинутый по агентам_2 поток (вторая доп сессия). Онлайн","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-11","15:00","18:00","АльфаСтрахование. Практикум для IT. День 3","АльфаСтрахование","Онлайн","Володя","","По расписанию",""],["2026-12-14","09:00","17:00","Предварительная бронь. Веббанкир. Очный практикум для топов","Веббанкир","Очно","Володя","Рома","Бронь",""],["2026-12-15","","","Дорога в Ростов","","Поездка","Рома","Володя","Поездка","Ростов-на-Дону"],["2026-12-16","10:00","18:00","JTI. Практикум для Донского Табака. Ростов-на-дону","JTI","Очно","Рома","Володя","По расписанию","Ростов-на-Дону"],["2026-12-17","","","Дорога в Ростов","","Поездка","Рома","Володя","Поездка","Ростов-на-Дону"],["2026-12-18","09:00","17:00","ВТБ_ПИК Практикум для руководителей базовый. Онлайн. Группа 1. День 1","ВТБ","Онлайн","Володя","","По расписанию",""],["2026-12-21","10:00","13:00","Открытый практикум МКР","МКР","Онлайн","Володя","Филипп","По расписанию",""],["2026-12-21","10:00","12:00","ВТБ продвинутый по агентам_3 поток (вторая доп сессия). Онлайн","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-21","14:00","16:00","ВТБ_ПИК Продвинутый интенсив. Первая сессия","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-22","09:00","17:00","ВТБ_ПИК Практикум для руководителей базовый. Онлайн. Группа 3. 1 день","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-22","16:00","20:00","ВТБ. Тренинг для ИТ директоров","ВТБ","Очно","Володя","","По расписанию",""],["2026-12-23","09:00","17:00","ВТБ_ПИК Практикум для руководителей базовый. Группа 2. День 1","ВТБ","Очно","Володя","","По расписанию",""],["2026-12-23","10:00","13:00","АТОН. День 1","Атон","Очно","Филипп","","По расписанию",""],["2026-12-23","10:00","17:00","ВТБ_Банк Практикум для руководителей базовый. День 1","ВТБ","Очно","Рома","","По расписанию",""],["2026-12-24","09:00","17:00","ВТБ_ПИК Практикум для руководителей базовый. Группа 2. День 2","ВТБ","Очно","Володя","","По расписанию",""],["2026-12-24","10:00","17:00","ВТБ_Банк Практикум для руководителей базовый. День 2","ВТБ","Очно","Рома","","По расписанию",""],["2026-12-24","10:00","13:00","АТОН. День 2","Атон","Очно","Филипп","","По расписанию",""],["2026-12-25","09:00","17:00","ВТБ_ПИК Практикум для руководителей базовый. Группа 1. День 2","ВТБ","Онлайн","Володя","","По расписанию",""],["2026-12-25","09:00","17:00","ВТБ_ПИК Практикум для руководителей базовый. Группа 3. День 2","ВТБ","Онлайн","Рома","","По расписанию",""],["2026-12-25","10:00","13:00","АТОН. День 3","Атон","Очно","Филипп","","По расписанию",""]]</script>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const dayMs=86400000;
+const dateObj=d=>new Date(d+"T12:00:00Z");
+const iso=d=>d.toISOString().slice(0,10);
+const shift=(d,n)=>iso(new Date(dateObj(d).getTime()+n*dayMs));
+const label=new Intl.DateTimeFormat("ru-RU",{weekday:"long",day:"numeric",month:"long",year:"numeric",timeZone:"UTC"});
+const dateLabel=new Intl.DateTimeFormat("ru-RU",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"});
+const compactDate=new Intl.DateTimeFormat("ru-RU",{day:"numeric",month:"long",timeZone:"UTC"});
+const monthLabel=new Intl.DateTimeFormat("ru-RU",{month:"long",year:"numeric",timeZone:"UTC"});
+const short=new Intl.DateTimeFormat("ru-RU",{weekday:"short",timeZone:"UTC"});
+const time=t=>{const m=t.trim().match(/^(\d{1,2}):(\d\d)(?::00)?$/);return m&&+m[1]<24&&+m[2]<60?+m[1]*60+ +m[2]:null;};
+const clock=t=>String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");
+const span=(a,b)=>clock(a)+"–"+clock(b);
+const number=new Intl.NumberFormat("ru-RU",{maximumFractionDigits:2});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const seed=JSON.parse($("seed").textContent);
+let records=[],people=[],first="",last="",day="",mode="day";
+const filterIds=["trainer","format"];
+const monday=d=>shift(d,-((dateObj(d).getUTCDay()+6)%7));
+const monthStart=d=>d.slice(0,7)+"-01";
+function moveMonth(d,n) {
+  const date=dateObj(monthStart(d));
+  date.setUTCMonth(date.getUTCMonth()+n);
+  return iso(date);
+}
+const validDate=d=>/^\d{4}-\d{2}-\d{2}$/.test(d)&&Number.isFinite(dateObj(d).getTime())&&d===iso(dateObj(d));
+const dates=(from,to)=>Array.from({length:Math.round((dateObj(to)-dateObj(from))/dayMs)+1},(_,i)=>shift(from,i));
+function bounds() {
+  if(mode==="week"){const from=monday(day);return [from,shift(from,6)];}
+  if(mode==="month")return [monthStart(day),shift(moveMonth(day,1),-1)];
+  return [day,day];
+}
+function clean(rows) {
+  return rows.map((row,i)=>{
+    let [date,start,end,title,client,format,a,b,status,place]=row.map(s=>(s??"").trim());
+    const m=date.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+    if(m) date=m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0");
+    const p=time(start),q=time(end);
+    const hasTime=p!==null&&q!==null&&p<q;
+    if(!validDate(date)||!title||!a||(!hasTime&&(start||end))) throw Error("Проверьте дату, время, название и первого тренера в строке "+(i+2)+".");
+    return {id:i,date,start:p,end:q,hasTime,title,client,format,people:[...new Set([a,b].filter(Boolean))],status:status||"По расписанию",place};
+  }).sort((a,b)=>a.date.localeCompare(b.date)||(a.start??-1)-(b.start??-1));
+}
+function loadSchedule(){
+  records=clean(seed);
+  people=[...new Set(records.flatMap(e=>e.people))].sort((a,b)=>a.localeCompare(b,"ru"));
+  first=records[0].date;last=records.at(-1).date;
+  day="2026-12-10";
+  const formats=[...new Set(records.map(e=>e.format).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"ru"));
+  filterIds.forEach((id,i)=>{
+    const options=(i===0?people:formats).map(x=>'<option>'+esc(x)+'</option>').join("");
+    $(id).innerHTML='<option value="">'+["Все тренеры","Все форматы"][i]+'</option>'+options;
+  });
+  $("source").textContent="Снимок расписания · "+records.length+" записей · "+first.split("-").reverse().join(".")+" - "+last.split("-").reverse().join(".");
+  draw();
+}
+const style=e=>e.format==="Поездка"?"travel":e.format==="Очно"?"onsite":"online";
+const active=e=>e.status!=="Отменено";
+function issues(rows,gap) {
+  const out=[];
+  const timed=rows.filter(e=>e.hasTime).sort((a,b)=>a.start-b.start);
+  timed.forEach((a,i)=>{
+    for(let j=i+1;j<timed.length&&timed[j].start<a.end;j++) out.push({a,b:timed[j],overlap:true});
+    const b=timed[i+1];
+    if(b&&b.start>=a.end&&b.start-a.end<gap&&(a.format==="Очно"||b.format==="Очно"))out.push({a,b,gap:b.start-a.end});
+  });
+  return out;
+}
+function choose(d){if(validDate(d)){day=d;draw();}}
+const eventTime=e=>e.hasTime?span(e.start,e.end):"Без времени";
+function groupByDay(rows) {
+  const grouped=new Map();
+  for(const e of rows) {
+    if(!grouped.has(e.date))grouped.set(e.date,[]);
+    grouped.get(e.date).push(e);
+  }
+  return grouped;
+}
+function drawOverview(from,to,visible,risky) {
+  const byDay=groupByDay(visible), periodDays=dates(from,to);
+  const empty='<p class="hint">За этот период нет событий по выбранным фильтрам.</p>';
+  const headings=dates(monday(from),shift(monday(from),6)).map(d=>'<p class="weekday">'+short.format(dateObj(d))+'</p>').join("");
+  const padding='<div aria-hidden="true"></div>'.repeat((dateObj(from).getUTCDay()+6)%7);
+  const cards=periodDays.map(d=>{
+    const rows=byDay.get(d)??[];
+    const heading=mode==="month"?String(dateObj(d).getUTCDate()):compactDate.format(dateObj(d));
+    const events=rows.map(e=>'<button type="button" class="period-event '+style(e)+(risky.has(e.id)?" risk":"")+'" data-day="'+d+'" data-event="'+e.id+'"'+(risky.has(e.id)?' title="Проверьте интервал на дорогу"':"")+'><time>'+eventTime(e)+'</time>'+esc(e.title)+'</button>').join("");
+    return '<article class="date-card '+(rows.length?"":"empty")+'"><div class="date-head"><button type="button" data-day="'+d+'" aria-label="'+esc(label.format(dateObj(d)))+'">'+heading+'</button>'+(rows.length?"":'<span>Нет событий</span>')+'</div>'+events+'</article>';
+  }).join("");
+  $("overview").innerHTML=(visible.length?"":empty)+'<div class="'+"period-grid"+'">'+headings+padding+cards+'</div>';
+}
+function draw(){
+  const [from,to]=bounds(), single=mode==="day";
+  $("week").hidden=!single;
+  for(const id of ["timelineView","dayEvents"])$(id).hidden=!single;
+  $("periodView").hidden=single;
+  $("detailColumns").classList.toggle("single-day",single);
+  $("modes").querySelectorAll("[data-mode]").forEach(button=>button.setAttribute("aria-pressed",button.dataset.mode===mode));
+  $("date").value=day;
+  const unit={day:"день",week:"неделя",month:"месяц"}[mode];
+  $("prev").setAttribute("aria-label","Предыдущий период: "+unit);
+  $("next").setAttribute("aria-label","Следующий период: "+unit);
+  if(single)$("dateTitle").textContent=label.format(dateObj(day));
+  else if(mode==="month")$("dateTitle").textContent=monthLabel.format(dateObj(day));
+  else $("dateTitle").textContent=dateLabel.formatRange(dateObj(from),dateObj(to));
+  const chosen=$("trainer").value, format=$("format").value;
+  const availableNames=chosen?[chosen]:people;
+  const requested=$("buffer").value===""?2:Number($("buffer").value);
+  const gap=Number.isFinite(requested)?Math.round(Math.max(0,Math.min(12,requested))*60):120;
+  const q=$("query").value.trim().toLowerCase();
+  const matches=e=>(!chosen||e.people.includes(chosen))&&(!format||format===e.format)&&(!q||e.title.toLowerCase().includes(q));
+  const periodRows=records.filter(e=>active(e)&&e.date>=from&&e.date<=to);
+  const visible=periodRows.filter(matches);
+  const byDay=groupByDay(periodRows);
+  const busy=(p,d=day)=>(byDay.get(d)??[]).filter(e=>e.people.includes(p));
+  const alerts=[...byDay.keys()].flatMap(d=>availableNames.flatMap(p=>
+    issues(busy(p,d),gap).filter(x=>matches(x.a)||matches(x.b)).map(x=>({...x,p}))
+  ));
+  const risky=new Set(alerts.flatMap(x=>[x.a.id,x.b.id]));
+  $("stats").innerHTML=[[visible.length,"Событий по фильтрам"],[visible.filter(e=>e.format==="Очно").length,"Очные события"],[visible.filter(e=>e.format==="Онлайн").length,"Онлайн-сессии"],[alerts.length,"Интервалы с риском"]].map(([n,t],i)=>'<div class="stat '+(i===3&&n?"warn":"")+'"><b>'+n+'</b><span>'+t+'</span></div>').join("");
+  $("warnings").innerHTML=alerts.map(x=>'<div class="warning"><b>'+(!single?compactDate.format(dateObj(x.a.date))+' · ':"")+esc(x.p)+' · '+(x.overlap?"пересечение":"запас "+number.format(x.gap/60)+" ч из "+number.format(gap/60)+" ч")+'</b><br>'+esc(eventTime(x.a)+" "+x.a.title)+'<br>'+esc(eventTime(x.b)+" "+x.b.title)+'</div>').join("")||'<p class="hint">За выбранный период предупреждений нет.</p>';
+  if(!single){drawOverview(from,to,visible,risky);return;}
+  $("week").innerHTML=dates(monday(day),shift(monday(day),6)).map(d=>{
+    const count=records.filter(e=>e.date===d&&active(e)&&matches(e)).length;
+    return '<button type="button" class="day '+(d===day?"active":"")+'" data-day="'+d+'" aria-pressed="'+(d===day)+'">'+short.format(dateObj(d))+' '+Number(d.slice(-2))+'<small>'+count+' зап.</small></button>';
+  }).join("");
+  const dayRows=periodRows;
+  const start=Math.min(480,...dayRows.filter(e=>e.hasTime).map(e=>Math.floor(e.start/60)*60)), end=Math.max(1200,...dayRows.filter(e=>e.hasTime).map(e=>Math.ceil(e.end/60)*60));
+  const width=end-start;
+  const ticks=Array.from({length:Math.floor(width/120)+1},(_,i)=>'<span>'+clock(start+i*120)+'</span>').join("");
+  $("calendar").innerHTML='<div></div><div class="ticks">'+ticks+'</div>'+availableNames.map(p=>'<div class="trainer">'+esc(p)+'</div><div class="lane" style="--tick:'+(6000/width)+'%">'+visible.filter(e=>e.people.includes(p)).map(e=>{
+    const a=e.hasTime?e.start:start,b=e.hasTime?e.end:end;
+    const caption=eventTime(e)+" · "+e.title;
+    return '<button type="button" class="slot '+style(e)+(risky.has(e.id)?" risk":"")+'" style="left:'+((a-start)*100/width)+'%;width:'+((b-a)*100/width)+'%" data-event="'+e.id+'" title="'+esc(caption)+'">'+esc(caption)+'</button>';
+  }).join("")+'</div>').join("");
+  $("events").innerHTML=visible.map(e=>'<details class="event '+style(e)+'" id="event-'+e.id+'"><summary><span class="when">'+eventTime(e)+'</span> <b>'+esc(e.title)+'</b><div class="event-tags"><span class="tag format-tag '+style(e)+'">'+esc(e.format||"Формат уточняется")+'</span><span class="tag">'+esc(e.people.join(", "))+'</span>'+(risky.has(e.id)?'<span class="tag risk">Проверьте интервал</span>':"")+'</div></summary><p>'+esc([e.client,e.place||(e.format==="Очно"?"Площадка не указана":"")].filter(Boolean).join(" · ")||"Дополнительных сведений нет.")+'</p></details>').join("")||'<p class="hint">На этот день нет событий по выбранным фильтрам.</p>';
+
+}
+function openEvent(id){
+  const detail=$("event-"+id);if(!detail)return;
+  detail.open=true;
+  detail.scrollIntoView({block:"center",behavior:"smooth"});
+  detail.querySelector("summary").focus({preventScroll:true});
+}
+function openDay(e){
+  const button=e.target.closest("[data-day]");if(!button)return;
+  mode="day";choose(button.dataset.day);
+  if(button.dataset.event!==undefined)openEvent(button.dataset.event);
+  else{$("dateTitle").tabIndex=-1;$("dateTitle").focus();}
+}
+$("week").addEventListener("click",openDay);
+$("overview").addEventListener("click",openDay);
+$("calendar").addEventListener("click",e=>{const el=e.target.closest("[data-event]");if(el)openEvent(el.dataset.event);});
+$("modes").addEventListener("click",e=>{const button=e.target.closest("[data-mode]");if(button){mode=button.dataset.mode;draw();}});
+$("date").addEventListener("change",e=>{choose(e.target.value);e.target.value=day;});
+function navigate(n){choose(mode==="month"?moveMonth(day,n):shift(day,n*(mode==="week"?7:1)));}
+$("prev").onclick=()=>navigate(-1);$("next").onclick=()=>navigate(1);
+for(const id of [...filterIds,"query","buffer"]) $(id).addEventListener("input",draw);
+$("reset").onclick=()=>{[...filterIds,"query"].forEach(id=>{$(id).value="";});draw();};
+loadSchedule();
+</script>
+</body>
+</html>
